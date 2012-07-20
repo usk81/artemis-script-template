@@ -1,0 +1,86 @@
+// --------------------------------------------------------
+// ■ 選択肢(中央表示)
+// 
+// 自由にいろんな処理を入れたい場合
+// マクロ [select file1="" file2="" label1="" label2="" text1="" text2=""] で呼び出す。
+// 
+// --------------------------------------------------------
+
+*start
+// オートセーブ禁止
+[autosave allow="0"]
+// 右クリック禁止
+[rclick   allow="0"]
+// オートモード禁止
+[automode allow="0"]
+
+// 現在表示中のメッセージウィンドウを非表示にする
+//[lyprop id="80" visible="0"]
+
+// 現在表示中のテキストを非表示にする
+//[sceout]
+
+// 0.5秒間かけてフェードインする
+[trans type="1" time="500"]
+
+// メッセージレイヤーを選択肢用のものに変える
+[chgmsg id="selecter"]
+
+// 選択肢用フォント設定
+[font
+	face         = "VlGothic"
+	rubyface     = "Mplus"
+	left         = "$30 * g.vratio / 100"
+	top          = "$180 * g.hratio / 100"
+	width        = "$280 * g.hratio / 100"
+	height       = "$440 * g.vratio / 100"
+	size         = "$20  * g.hratio / 100"
+	rubysize     = "$10  * g.hratio / 100"
+	spacetop     = "0"
+	spacemiddle  = "0"
+	spacebottom  = "0"
+	color        = "0x000000"
+	shadowcolor  = "0x000000"
+	outlinecolor = "0x000000"
+	align        = "left"
+	style        = "single"
+	hung         = "1"
+	rendered     = "1"
+]
+[link label="select1"][print data="$t.select_txt1"][/link][rt]
+[link label="select2"][print data="$t.select_txt2"][/link][rt]
+[scein]
+[stop]
+
+*select1
+[var name="t.select_file" data="$t.select_file1"]
+[var name="t.select_lbl"  data="$t.select_lbl1"]
+[jump label="leave"]
+[stop]
+
+*select2
+[var name="t.select_file" data="$t.select_file2"]
+[var name="t.select_lbl"  data="$t.select_lbl2"]
+[jump label="leave"]
+[stop]
+
+*leave
+// 選択肢の文字列消去
+[rp]
+
+[/font]
+
+// 選択肢用ウインドウ削除
+[/chgmsg]
+
+// メッセージウィンドウを表示
+[lyprop id="80" visible="1"]
+
+// オートセーブ有効
+[autosave allow="1"]
+// 右クリック有効
+[rclick   allow="1"]
+// オートモード有効
+[automode allow="1"]
+
+[return]

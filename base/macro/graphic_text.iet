@@ -1,0 +1,611 @@
+////////////////////////////////////////////////////////////
+//
+// 背景処理
+//
+////////////////////////////////////////////////////////////
+
+// --------------------------------------------------------
+// ■背景表示
+// 
+// @param
+//   file  読み込むファイルの名前（拡張子省略可能）
+// 
+// @HowToUse
+//   [bg file="ファイル名"]
+// --------------------------------------------------------
+*bg
+// 背景グラフィックを裏画面に読み込み
+[lyc id="1" file="$g.imagepath + file"]
+// 裏画面を表画面に反映（表示）
+[trans type="1" time="300"]
+[return]
+
+// --------------------------------------------------------
+// ■背景表示2
+// 
+// @param
+//   file  読み込むファイルの名前（拡張子省略可能）
+// 
+// @HowToUse
+//   [bg file="ファイル名"]
+// --------------------------------------------------------
+*bg2
+// メッセージウィンドウを消去(sub.ietのdel_mwと同じ処理)
+[lydel id="80"]
+[glyph]
+[lytweendel id="90"]
+[lydel      id="90"]
+// 背景グラフィックを裏画面に読み込み
+[lyc id="1" file="$g.imagepath + file"]
+// 裏画面を表画面に反映（表示）
+[trans type="1" time="300"]
+[return]
+
+// --------------------------------------------------------
+// ■背景削除
+// 
+// @param
+//   なし
+// 
+// @HowToUse
+//   [bgdel]
+// --------------------------------------------------------
+*bgdel
+[lydel id="1"]
+[return]
+
+////////////////////////////////////////////////////////////
+//
+// キャラ表示
+//
+////////////////////////////////////////////////////////////
+
+// --------------------------------------------------------
+// ■立ち絵 (表示)
+// 画像サイズを320x480で考えた場合で最適化しています。
+// レイヤーidは数字が大きいほど画面の手前に優先して表示されます。
+// 
+// @param
+//   file  読み込むファイルの名前（拡張子省略可能）
+//   pos   位置補正(0:画面中央)
+// 
+// @HowToUse
+//   ●左
+//     [left-f file="ファイル名" pos="0"]
+//     [left-c file="ファイル名" pos="0"]
+//     [left-b file="ファイル名" pos="0"]
+//   ●中央
+//     [center-f file="ファイル名" pos="0"]
+//     [center-c file="ファイル名" pos="0"]
+//     [center-b file="ファイル名" pos="0"]
+//   ●右
+//     [right-f file="ファイル名" pos="0"]
+//     [right-c file="ファイル名" pos="0"]
+//     [right-b file="ファイル名" pos="0"]
+// --------------------------------------------------------
+
+// ●左・前
+*left-f
+[lyc id="12" file="$g.imagepath + file"]
+[lyprop id="12" left="$pos - 50"]
+[return]
+
+// ●左・中
+*left-c
+[lyc id="11" file="$g.imagepath + file"]
+[lyprop id="11" left="$pos - 50"]
+[return]
+
+// ●左・後
+*left-b
+[lyc id="10" file="$g.imagepath + file"]
+[lyprop id="10" left="$pos - 50"]
+[return]
+
+// ●中央・前
+*center-f
+[lyc id="12" file="$g.imagepath + file"]
+[lyprop id="12" left="$pos"]
+[return]
+
+// ●中央・中
+*center-c
+[lyc id="11" file="$g.imagepath + file"]
+[lyprop id="11" left="$pos"]
+[return]
+
+// ●中央・後
+*center-b
+[lyc id="10" file="$g.imagepath + file"]
+[lyprop id="10" left="$pos"]
+[return]
+
+// ●右・前
+*right-f
+[lyc id="12" file="$g.imagepath + file"]
+[lyprop id="12" left="$pos + 50"]
+[return]
+
+// ●右・中
+*right-c
+[lyc id="11" file="$g.imagepath + file"]
+[lyprop id="11" left="$pos + 50"]
+[return]
+
+// ●右・後
+*right-b
+[lyc id="10" file="$g.imagepath + file"]
+[lyprop id="10" left="$pos + 50"]
+[return]
+
+// --------------------------------------------------------
+// ■表情 (表示)
+// 画像サイズを320x480で考えた場合で最適化しています。
+// 
+// @param
+//   file  読み込むファイルの名前（拡張子省略可能）
+//   pos   位置補正(0:レイヤーの左端)
+// 
+// @HowToUse
+//   [face-left file="ファイル名" pos="0"]
+//   [face-center file="ファイル名" pos="0"]
+//   [face-right file="ファイル名" pos="0"]
+// --------------------------------------------------------
+
+// ●表情(左)
+*face-left
+[lyc id="13" file="$g.imagepath + file"]
+[lyprop id="13" left="$pos - 50"]
+[return]
+
+// ●表情(中央)
+*face-center
+[lyc id="14" file="$g.imagepath + file"]
+[lyprop id="14" left="$pos"]
+[return]
+
+// ●表情(右)
+*face-right
+[lyc id="15" file="$g.imagepath + file"]
+[lyprop id="15" left="$pos + 50"]
+[return]
+
+// --------------------------------------------------------
+// ■立ち絵＋表情
+// 画像サイズを320x480で考えた場合で最適化しています。
+// 
+// @param
+//   body  立ち絵画像ファイルの名前（拡張子省略可能）
+//   face  顔画像ファイルの名前（拡張子省略可能）
+//   pos   レイヤーの左端位置
+// 
+// @HowToUse
+//   ●左
+//     [set-left-f body="ファイル名" face="ファイル名" pos="0"]
+//     [set-left-c body="ファイル名" face="ファイル名" pos="0"]
+//     [set-left-b body="ファイル名" face="ファイル名" pos="0"]
+//   ●中央
+//     [set-center-f body="ファイル名" face="ファイル名" pos="0"]
+//     [set-center-c body="ファイル名" face="ファイル名" pos="0"]
+//     [set-center-b body="ファイル名" face="ファイル名" pos="0"]
+//   ●右
+//     [set-right-f body="ファイル名" face="ファイル名" pos="0"]
+//     [set-right-c body="ファイル名" face="ファイル名" pos="0"]
+//     [set-right-b body="ファイル名" face="ファイル名" pos="0"]
+// --------------------------------------------------------
+
+// ●左・前
+*set-left-f
+[lyc id="12" file="$g.imagepath + body"]
+[lyc id="13" file="$g.imagepath + face"]
+[lyprop id="12" left="$pos - 50"]
+[lyprop id="13" left="$pos - 50"]
+[return]
+
+// ●左・中
+*set-left-c
+[lyc id="11" file="$g.imagepath + body"]
+[lyc id="13" file="$g.imagepath + face"]
+[lyprop id="11" left="$pos - 50"]
+[lyprop id="13" left="$pos - 50"]
+[return]
+
+// ●左・後
+*set-left-b
+[lyc id="10" file="$g.imagepath + body"]
+[lyc id="13" file="$g.imagepath + face"]
+[lyprop id="10" left="$pos - 50"]
+[lyprop id="13" left="$pos - 50"]
+[return]
+
+// ●中央・前
+*set-center-f
+[lyc id="12" file="$g.imagepath + body"]
+[lyc id="14" file="$g.imagepath + face"]
+[lyprop id="12" left="$pos"]
+[lyprop id="14" left="$pos"]
+[return]
+
+// ●中央・中
+*set-center-c
+[lyc id="11" file="$g.imagepath + body"]
+[lyc id="14" file="$g.imagepath + face"]
+[lyprop id="11" left="$pos"]
+[lyprop id="14" left="$pos"]
+[return]
+
+// ●中央・後
+*set-center-b
+[lyc id="10" file="$g.imagepath + body"]
+[lyc id="14" file="$g.imagepath + face"]
+[lyprop id="10" left="$pos"]
+[return]
+
+// ●右・前
+*set-right-f
+[lyc id="12" file="$g.imagepath + body"]
+[lyc id="15" file="$g.imagepath + face"]
+[lyprop id="12" left="$pos + 50"]
+[lyprop id="15" left="$pos + 50"]
+[return]
+
+// ●右・中
+*set-right-c
+[lyc id="11" file="$g.imagepath + body"]
+[lyc id="15" file="$g.imagepath + face"]
+[lyprop id="11" left="$pos + 50"]
+[lyprop id="15" left="$pos + 50"]
+[return]
+
+// ●右・後
+*set-right-b
+[lyc id="10" file="$g.imagepath + body"]
+[lyc id="15" file="$g.imagepath + face"]
+[lyprop id="10" left="$pos + 50"]
+[lyprop id="15" left="$pos + 50"]
+[return]
+
+// --------------------------------------------------------
+// ■エフェクト (表示)
+// 縦のサイズを480にした場合で最適化しています。
+// 立ち絵や表情とposの考え方が違うので注意
+// 
+// @param
+//   file  読み込むファイルの名前（拡張子省略可能）
+//   pos   位置設定(レイヤーの左端位置)
+// 
+// @HowToUse
+//   [effect1 file="ファイル名" pos="0"]
+//   [effect2 file="ファイル名" pos="0"]
+//   [effect3 file="ファイル名" pos="0"]
+// --------------------------------------------------------
+
+// ●エフェクト1
+*effect1
+[lyc id="16" file="$g.imagepath + file"]
+[lyprop id="16" left="$pos"]
+[return]
+
+// ●エフェクト2
+*effect2
+[lyc id="17" file="$g.imagepath + file"]
+[lyprop id="17" left="$pos"]
+[return]
+
+// ●エフェクト3
+*effect3
+[lyc id="18" file="$g.imagepath + file"]
+[lyprop id="18" left="$pos"]
+[return]
+
+// --------------------------------------------------------
+// ■キャラレイヤー消去
+// 
+// @param
+//   なし
+// 
+// @HowToUse
+//   [del-f]
+//   [del-c]
+//   [del-b]
+//   [del-face1]
+//   [del-face2]
+//   [del-face3]
+//   [del-face-left]
+//   [del-face-center]
+//   [del-face-right]
+//   [del-effect1]
+//   [del-effect2]
+//   [del-effect3]
+//   [del-all]
+// --------------------------------------------------------
+
+// ●前
+*del-f
+[lydel id="12"]
+[return]
+
+// ●中
+*del-c
+[lydel id="11"]
+[return]
+
+// ●後
+*del-b
+[lydel id="10"]
+[return]
+
+// ●表情1(過去処理用)
+*del-face1
+[lydel id="13"]
+[return]
+
+// ●表情2(過去処理用)
+*del-face2
+[lydel id="14"]
+[return]
+
+// ●表情3(過去処理用)
+*del-face3
+[lydel id="15"]
+[return]
+
+// ●表情(左)
+*del-face-left
+[lydel id="13"]
+[return]
+
+// ●表情(中央)
+*del-face-center
+[lydel id="14"]
+[return]
+
+// ●表情(右)
+*del-face-right
+[lydel id="15"]
+[return]
+
+// ●エフェクト1
+*del-effect1
+[lydel id="16"]
+[return]
+
+// ●エフェクト2
+*del-effect2
+[lydel id="17"]
+[return]
+
+// ●エフェクト3
+*del-effect3
+[lydel id="18"]
+[return]
+
+// ●全立ち絵と全ブックを一括消去
+*del-all
+[lydel id="10"]
+[lydel id="11"]
+[lydel id="12"]
+[lydel id="13"]
+[lydel id="14"]
+[lydel id="15"]
+[lydel id="16"]
+[lydel id="17"]
+[lydel id="18"]
+[return]
+
+////////////////////////////////////////////////////////////
+//
+// メッセージウィンドウ表示
+//
+////////////////////////////////////////////////////////////
+
+
+// --------------------------------------------------------
+// ■メッセージウィンドウの表示
+// 効果時間は300msec固定
+// 
+// @param
+//   なし
+// --------------------------------------------------------
+*mes
+[call file="sub.iet" label="set_mw"]
+[trans type="1" time="300"]
+[return]
+
+// --------------------------------------------------------
+// ■メッセージウィンドウの消去
+// 効果時間は300msec固定
+// 
+// @param
+//   なし
+// --------------------------------------------------------
+*clr
+[call file="sub.iet" label="del_mw"]
+[trans type="1" time="300"]
+[return]
+
+///////////////////////////////////////////////////////////
+//
+// ユーザ名取得
+//
+///////////////////////////////////////////////////////////
+
+// --------------------------------------------------------
+// ■フルネーム
+// 
+// @param
+//   なし
+// 
+// @HowToUse
+//   [full_name]
+// --------------------------------------------------------
+*full_name
+[print data="$last_name"][print data="$first_name"]
+[return]
+
+// --------------------------------------------------------
+// ■苗字
+// 
+// @param
+//   なし
+// 
+// @HowToUse
+//   [last_name]
+// --------------------------------------------------------
+*last_name
+[print data="$last_name"]
+[return]
+
+// --------------------------------------------------------
+// ■名前
+// 
+// @param
+//   なし
+// 
+// @HowToUse
+//   [first_name]
+// --------------------------------------------------------
+*first_name
+[print data="$first_name"]
+[return]
+
+////////////////////////////////////////////////////////////
+//
+// エフェクト
+//
+////////////////////////////////////////////////////////////
+
+// --------------------------------------------------------
+// ■ 画面を揺らす
+// 今はこんな事しなくてもいいらしいが、
+// それはそれで作るのが嫌。
+//
+// @param
+//   count 何回揺らすか
+//   time  揺らしの1回に何ミリ秒かけるか？
+//   size  揺らし幅のピクセル数
+//   dir   揺らす方向を指定 (垂直 -> v / 水平 -> h )
+// 
+// @HowToUse
+//   [quake count="1" time="100" size="50" dir="v"]
+// --------------------------------------------------------
+
+*quake
+// レイヤー情報を配列変数に取得
+[var name="li" system="get_layer_info"]
+
+[if estimate="$dir == 'h'"]
+	[var name="i" data="0"]
+	[loop estimate="$i < li.size"]
+		[if estimate="$li.(i).visible != 0"]
+			[tweenset]
+				// 既存のトゥイーンを念のため削除する
+				[lytweendel id="$li.(i).id"]
+				// 現在の位置から左または上までアニメーションする
+				[lytween id="$li.(i).id" param="left" from="$li.(i).left" to="$li.(i).left - size" msec="$time / 2" yoyo="0"]
+				// 左または上から右または下に向けて、指定された回数だけアニメーションする
+				[lytween id="$li.(i).id" param="left" from="$li.(i).left - size" to="$li.(i).left + size" msec="$time" yoyo="$count"]
+				// 左または上、あるいは、右または下から、元の位置までアニメーションする
+				// どちらにいるかは、何回揺らしたかによって決まるので、揺らし回数が奇数のときと偶数のときで処理を分ける
+				[if estimate="$(count % 2) == 0"]
+					[lytween id="$li.(i).id" param="left" from="$li.(i).left + size" to="$li.(i).left" msec="$time / 2" yoyo="0"]
+				[/if]
+				[if estimate="$(count % 2) == 1"]
+					[lytween id="$li.(i).id" param="left" from="$li.(i).left - size" to="$li.(i).left" msec="$time / 2" yoyo="0"]
+				[/if]
+			[/tweenset]
+		[/if]
+		[var name="i" data="$i + 1"]
+	[/loop]
+[/if]
+[if estimate="$dir == 'v'"]
+	[var name="i" data="0"]
+	[loop estimate="$i < li.size"]
+		[if estimate="$li.(i).visible != 0"]
+			[tweenset]
+				// 既存のトゥイーンを念のため削除する
+				[lytweendel id="$li.(i).id"]
+				// 現在の位置から左または上までアニメーションする
+				[lytween id="$li.(i).id" param="top" from="$li.(i).top" to="$li.(i).top - size" msec="$time / 2" yoyo="0"]
+				// 左または上から右または下に向けて、指定された回数だけアニメーションする
+				[lytween id="$li.(i).id" param="top" from="$li.(i).top - size" to="$li.(i).top + size" msec="$time" yoyo="$count"]
+				// 左または上、あるいは、右または下から、元の位置までアニメーションする
+				// どちらにいるかは、何回揺らしたかによって決まるので、揺らし回数が奇数のときと偶数のときで処理を分ける
+				[if estimate="$(count % 2) == 0"]
+					[lytween id="$li.(i).id" param="top" from="$li.(i).top + size" to="$li.(i).top" msec="$time / 2" yoyo="0"]
+				[/if]
+				[if estimate="$(count % 2) == 1"]
+					[lytween id="$li.(i).id" param="top" from="$li.(i).top - size" to="$li.(i).top" msec="$time / 2" yoyo="0"]
+				[/if]
+			[/tweenset]
+		[/if]
+		[var name="i" data="$i + 1"]
+	[/loop]
+[/if]
+[return]
+
+////////////////////////////////////////////////////////////
+//
+// その他
+//
+////////////////////////////////////////////////////////////
+
+// --------------------------------------------------------
+// ■ 選択肢(2択)[暫定版]
+//    ToDo:う～ん、どうしよう!?なんかうざい
+// 
+// @param
+//   ●選択肢1
+//     text1  画面遷移用の変数名
+//     file1  遷移先のファイル名(同じファイル内の遷移でも必要)
+//     label1 遷移先のラベル
+//   
+//   ●選択肢2
+//     text1  画面遷移用の変数名
+//     file1  遷移先のファイル名(同じファイル内の遷移でも必要)
+//     label1 遷移先のラベル
+// 
+// @HowToUse
+//   [select text1="" text2="" file1="" file2="" label1="" label2=""]
+// --------------------------------------------------------
+*select
+// 選択テキストを一時変数に格納
+[var name="t.select_txt1" data="$text1"]
+[var name="t.select_txt2" data="$text2"]
+// 遷移ラベル名を一時変数に格納
+[var name="t.select_lbl1" data="$label1"]
+[var name="t.select_lbl2" data="$label2"]
+// 遷移ファイル名を一時変数に格納
+[var name="t.select_file1" data="$file1"]
+[var name="t.select_file2" data="$file2"]
+
+[call file="select.iet" label="start"]
+[jump file="$t.select_file" label="$t.select_lbl"]
+[return]
+
+// --------------------------------------------------------
+// ■ タイピング画面への遷移(暫定)
+// 
+// @param
+//   name  画面遷移用の変数名
+//   data  遷移先に渡す値
+// --------------------------------------------------------
+*typing
+[var name="$name" data="$data"]
+[return]
+
+// --------------------------------------------------------
+// ■ タイピング画面から戻り値取得(暫定)
+// 
+// @param
+//   name  遷移で使った変数名
+//   dummy ダミー値(Windowsの場合)
+// --------------------------------------------------------
+*typing_back
+[var name="os" system="os"]
+[if estimate="$os == 'windows'"]
+  [var name="type_back" value="$dummy"]
+[elseif]
+  [var name="type_back" value="$type_back"]
+[/if]
+[return]

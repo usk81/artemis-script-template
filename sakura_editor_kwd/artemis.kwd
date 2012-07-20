@@ -1,0 +1,169 @@
+// -----------------------------------------------------------
+// Artemis Engine キーワード定義ファイル
+// Version. 0.0.2
+// 
+// base revision r1289
+// create date   2011/11/15
+// update date   2011/11/15
+//
+// created by Yusuke Komatsu
+// support http://webtonic.jp/
+//
+// License : public domain (このファイルのみ)
+// ※ Artemis Engine本体の著作権・ライセンスは御影氏に帰属します。
+// -----------------------------------------------------------
+
+
+// -----------------------------------------------------------
+// 01. 実行制御関連
+// -----------------------------------------------------------
+automode
+autosave
+backlog
+call
+calllua
+debug
+debugprint
+delcommandskipin
+delonautomodein
+delonautomodeout
+delonbacklogin
+delonbacklogout
+deloncommandskipout
+deloncontrolskipin
+deloncontrolskipout
+delonhidein
+delonhideout
+delonpush
+exec
+exit
+hide
+jump
+load
+lua
+macroadd
+macrodel
+rclick
+reset
+return
+save
+setonautomodein
+setonautomodeout
+setonbacklogin
+setonbacklogout
+setoncommandskipin
+setoncommandskipout
+setoncontrolskipin
+setoncontrolskipout
+setonhidein
+setonhideout
+setonpush
+skip
+stop
+tag
+wait
+
+// -----------------------------------------------------------
+// 02. テキスト関連
+// -----------------------------------------------------------
+chgmsg
+font
+fontinit
+glyph
+link
+linkdisable
+linkenable
+prohibit
+rp
+rt
+ruby
+scein
+sceout
+scetween
+writebacklog
+
+// -----------------------------------------------------------
+// 03. グラフィック関連
+// -----------------------------------------------------------
+anime
+delonclick
+delondrag
+delondragin
+delondragout
+delonrollout
+delonrollover
+flip
+lyc
+lydel
+lyedit
+lyprop
+lytween
+lytweendel
+savess
+setonclick
+setondrag
+setondragin
+setondragout
+setonrollout
+setonrollover
+slider
+takess
+trans
+tweenset
+uidel
+
+// -----------------------------------------------------------
+// 04. サウンド関連
+// -----------------------------------------------------------
+seplay
+sestop
+splay
+sstop
+sxfade
+voice
+
+// -----------------------------------------------------------
+// 05. ムービー関連
+// -----------------------------------------------------------
+video
+
+// -----------------------------------------------------------
+// 06. 変数関連
+// -----------------------------------------------------------
+if
+else
+elsif
+loop
+var
+
+// -----------------------------------------------------------
+// 07. ファイル関連
+// -----------------------------------------------------------
+file
+
+// -----------------------------------------------------------
+// 08. ネットワーク関連
+// -----------------------------------------------------------
+httpget
+httppost
+
+// -----------------------------------------------------------
+// 09. OS機能/ハードウェア関連
+// -----------------------------------------------------------
+caption
+delondirchg
+dialog
+direction
+ime
+openbrowser
+purchase
+setondirchg
+statusbar
+vibrate
+
+// -----------------------------------------------------------
+// 10. プリプロセッサタグ
+// -----------------------------------------------------------
+&autoinsert
+&linetag
+&scpsupport 
